@@ -152,7 +152,7 @@ public class HomeController {
 	@PostMapping("/api/search/{sitelist}")
     public ResponseEntity<?> getSearchResultViaAjax(@PathVariable("sitelist") String sitelist) {
 
-      
+		System.out.println("sitelist : " + sitelist);
         
         
         
