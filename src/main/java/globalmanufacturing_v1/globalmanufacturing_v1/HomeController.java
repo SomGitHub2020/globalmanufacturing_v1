@@ -54,6 +54,14 @@ public class HomeController {
 		
 		return "welcome";
 	}
+	
+	@GetMapping("/welcomeProd")
+	public String welcomeProdForm(Model model) {
+
+		model.addAttribute("production", production);
+		
+		return "prod_analysis_new";
+	}
 
 	/*
 	 * @PostMapping("/welcomeProd") public String prodWelcomeForm(Model model) {
