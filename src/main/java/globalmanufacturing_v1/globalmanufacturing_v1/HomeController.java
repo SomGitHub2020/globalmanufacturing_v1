@@ -187,7 +187,8 @@ public class HomeController {
                 
         //System.out.println("sitelist : " + production.getSitelist());
         
-        
+        production.setFromdate(production2.getFromdate());
+        production.setSitelist(production2.getSitelist());
 		
 		String selectedOrderA = "PLATETRT005";
 		String selectedOrderB = "1000486";
