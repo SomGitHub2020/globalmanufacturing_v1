@@ -169,7 +169,7 @@ public class HomeController {
 	
 	
 	@PostMapping("/welcomeProd")
-	public String prodSubmit(Model model, @ModelAttribute Production production) {
+	public String prodSubmit(Model model, @ModelAttribute Production production2) {
 
 		List<SiteOrder> listSiteOrderAs = new ArrayList<SiteOrder>();
 		List<SiteOrder> listSiteOrderBs = new ArrayList<SiteOrder>();
@@ -197,10 +197,10 @@ public class HomeController {
 		 * String prefixShopOrderBO_B = "ShopOrderBO:"+siteAInput+","+selectedOrderA;
 		 */
 
-		String fromDt = production.getFromdate();
-		String fromHours = production.getFromHH();
-		String fromMins = production.getFromMM();
-		String fromSeconds = production.getFromSS();
+		String fromDt = production2.getFromdate();
+		String fromHours = production2.getFromHH();
+		String fromMins = production2.getFromMM();
+		String fromSeconds = production2.getFromSS();
 		
 		//String fromDateTime = fromDt + "T" + fromHours +":"+fromMins+":"+fromSeconds;
 		
