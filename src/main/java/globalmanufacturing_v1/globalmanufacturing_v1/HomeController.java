@@ -122,7 +122,7 @@ public class HomeController {
 	 
 
 	@PostMapping("/selection") 
-	public String selectSubmit(Model model) {
+	public String selectSubmit(Model model, @ModelAttribute Production production) {
 
 		String siteAInput = "PPME";
 		String siteBInput = "EXID";
@@ -147,8 +147,6 @@ public class HomeController {
 		
 		//String fromDateTime = "2019-05-05T00:00:00";
 		
-		model.addAttribute("production", production);
-
 		return "welcome";
 	}
 	
