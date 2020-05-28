@@ -171,7 +171,7 @@ public class HomeController {
 	
 	
 	@PostMapping("/welcomeProd")
-	public String prodSubmit(Model model, @ModelAttribute Production production) {
+	public String prodSubmit(Model model, @ModelAttribute Production production2) {
 
 		List<SiteOrder> listSiteOrderAs = new ArrayList<SiteOrder>();
 		List<SiteOrder> listSiteOrderBs = new ArrayList<SiteOrder>();
