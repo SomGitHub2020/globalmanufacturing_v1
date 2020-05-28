@@ -122,13 +122,16 @@ public class HomeController {
 	 
 
 	@PostMapping("/selection") 
-	public String selectSubmit(Model model, @ModelAttribute Production production1) {
+	public String selectSubmit(Model model) {
 
 		String siteAInput = "PPME";
 		String siteBInput = "EXID";
 
-		System.out.println(" + production1.getSitelist()" + production1.getSitelist());
-		production.setSitelist(production1.getSitelist());
+		/*
+		 * System.out.println(" + production1.getSitelist()" +
+		 * production1.getSitelist());
+		 * production.setSitelist(production1.getSitelist());
+		 */
 		
 		/*
 		 * String prefixShopOrderBO_A = "ShopOrderBO:"+siteAInput+","+selectedOrderA;
@@ -169,7 +172,7 @@ public class HomeController {
 	
 	
 	@PostMapping("/welcomeProd")
-	public String prodSubmit(Model model, @ModelAttribute Production production2) {
+	public String prodSubmit(Model model) {
 
 		List<SiteOrder> listSiteOrderAs = new ArrayList<SiteOrder>();
 		List<SiteOrder> listSiteOrderBs = new ArrayList<SiteOrder>();
@@ -183,9 +186,9 @@ public class HomeController {
 		//String siteAInput = sitelist.split(",")[0];
         //String siteBInput = sitelist.split(",")[1];
                 
-        System.out.println("sitelist : " + production.getSitelist());
+        //System.out.println("sitelist : " + production.getSitelist());
         
-        model.addAttribute("production", production);
+        
 		
 		String selectedOrderA = "PLATETRT005";
 		String selectedOrderB = "1000486";
@@ -199,10 +202,10 @@ public class HomeController {
 		 * String prefixShopOrderBO_B = "ShopOrderBO:"+siteAInput+","+selectedOrderA;
 		 */
 
-		String fromDt = production2.getFromdate();
-		String fromHours = production2.getFromHH();
-		String fromMins = production2.getFromMM();
-		String fromSeconds = production2.getFromSS();
+		String fromDt = production.getFromdate();
+		String fromHours = production.getFromHH();
+		String fromMins = production.getFromMM();
+		String fromSeconds = production.getFromSS();
 		
 		//String fromDateTime = fromDt + "T" + fromHours +":"+fromMins+":"+fromSeconds;
 		
@@ -260,6 +263,8 @@ public class HomeController {
 		  Integer.parseInt(listSiteOrderBs.get(i).getYieldqty().split("\\.")[0]));
 		  eachOrderTargetBarData_B.put(listSiteOrderBs.get(i).getOrder(),
 		  Integer.parseInt(listSiteOrderBs.get(i).getBuildqty().split("\\.")[0])); }
+		  
+		  model.addAttribute("production", production);
 		  
 		  model.addAttribute("barChartOrderQtyDataA",barChartData_A);
 		  model.addAttribute("barChartOrderQtyDataB",barChartData_B);

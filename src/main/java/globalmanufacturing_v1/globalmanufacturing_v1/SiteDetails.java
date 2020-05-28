@@ -14,7 +14,7 @@ public class SiteDetails {
 		String result="";
         try{  
             Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection con=DriverManager.getConnection( "jdbc:mysql://connplantservice:3306/connplantsdb?user=root&password=VySU8WBweuVYNx3T&useSSL=false");  
+            Connection con=DriverManager.getConnection("jdbc:mysql://globalmfgservice:3306/globalmfgdb?user=root&password=igCotOwKrnqrA310&useSSL=false");  
             Statement stmt=con.createStatement();  
             ResultSet rs=stmt.executeQuery(
             		"SELECT distinct SITE, DESCRIPION FROM `SITE_MASTER` "

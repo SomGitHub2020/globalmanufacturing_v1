@@ -15,7 +15,7 @@ public class ShowResAnalysisDetails {
 	
         try{  
             Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection con=DriverManager.getConnection( "jdbc:mysql://globalmfgservice:3306/globalmfgdb?user=root&password=igCotOwKrnqrA310&useSSL=false");  
+            Connection con=DriverManager.getConnection("jdbc:mysql://globalmfgservice:3306/globalmfgdb?user=root&password=igCotOwKrnqrA310&useSSL=false");  
             Statement stmt=con.createStatement();  
             ResultSet rs=stmt.executeQuery(
             		"SELECT DISTINCT WORKCENTER, FLOOR(RAND()*(100)) FROM `RESOURCE_MASTER` "
