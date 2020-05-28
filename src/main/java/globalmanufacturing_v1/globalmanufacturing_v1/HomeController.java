@@ -146,7 +146,8 @@ public class HomeController {
 		String fromDateTime = fromDt + "T" + fromHours +":"+fromMins+":"+fromSeconds;
 		
 		//String fromDateTime = "2019-05-05T00:00:00";
-
+		
+		model.addAttribute("production", production);
 
 		return "welcome";
 	}
