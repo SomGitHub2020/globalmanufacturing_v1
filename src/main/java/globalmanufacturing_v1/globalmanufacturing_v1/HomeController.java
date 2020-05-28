@@ -122,11 +122,13 @@ public class HomeController {
 	 
 
 	@PostMapping("/selection") 
-	public String selectSubmit(Model model, @ModelAttribute Production production) {
+	public String selectSubmit(Model model, @ModelAttribute Production production1) {
 
 		String siteAInput = "PPME";
 		String siteBInput = "EXID";
 
+		System.out.println(" + production1.getSitelist()" + production1.getSitelist());
+		production.setSitelist(production1.getSitelist());
 		
 		/*
 		 * String prefixShopOrderBO_A = "ShopOrderBO:"+siteAInput+","+selectedOrderA;
