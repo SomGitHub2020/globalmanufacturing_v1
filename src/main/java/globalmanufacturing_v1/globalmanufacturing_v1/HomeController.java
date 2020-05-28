@@ -122,16 +122,14 @@ public class HomeController {
 	 
 
 	@PostMapping("/selection") 
-	public String selectSubmit(Model model, @ModelAttribute Production production) {
+	public String selectSubmit(Model model, @ModelAttribute Production p1) {
 
 		String siteAInput = "PPME";
 		String siteBInput = "EXID";
 
-		/*
-		 * System.out.println(" + production1.getSitelist()" +
-		 * production1.getSitelist());
-		 * production.setSitelist(production1.getSitelist());
-		 */
+		production.setFromdate(p1.getFromdate());
+		production.setSitelist(p1.getSitelist());
+		
 		
 		/*
 		 * String prefixShopOrderBO_A = "ShopOrderBO:"+siteAInput+","+selectedOrderA;
@@ -171,7 +169,7 @@ public class HomeController {
 	
 	
 	@PostMapping("/welcomeProd")
-	public String prodSubmit(Model model, @ModelAttribute Production production2) {
+	public String prodSubmit(Model model, @ModelAttribute Production p2) {
 
 		List<SiteOrder> listSiteOrderAs = new ArrayList<SiteOrder>();
 		List<SiteOrder> listSiteOrderBs = new ArrayList<SiteOrder>();
@@ -186,9 +184,7 @@ public class HomeController {
         //String siteBInput = sitelist.split(",")[1];
                 
         //System.out.println("sitelist : " + production.getSitelist());
-        
-        production.setFromdate(production2.getFromdate());
-        production.setSitelist(production2.getSitelist());
+      
 		
 		String selectedOrderA = "PLATETRT005";
 		String selectedOrderB = "1000486";
