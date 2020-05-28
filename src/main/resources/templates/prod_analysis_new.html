@@ -24,7 +24,7 @@ $(function () {
         
     var myObj, text;
     
-    var str = document.getElementById("siteListID").innerHTML; //'a'; 
+    var str = [[${production.sitelist}]]; //document.getElementById("siteListID").innerHTML; //'a'; 
     var search = {}
                  search["sitelist"] = str; 
      $.ajax({
@@ -181,7 +181,7 @@ $(function () {
 		<div id="container"
 			style="min-width: 400px; height: 400px; margin: 0 auto"></div>
 	</div>
-	<p th:text="'From Date' + ${production.fromdate} + ' is configured successfully!'" />
-	<p id="siteListID" th:text="'Site List' + ${production.sitelist} + ' is configured successfully!'" />
+	<p id="fromDateID" th:text="${production.fromdate}" />
+	<p id="siteListID" th:text="${production.sitelist}" />
 </body>
  </html>
