@@ -184,6 +184,8 @@ public class HomeController {
         //String siteBInput = sitelist.split(",")[1];
                 
         System.out.println("sitelist : " + production.getSitelist());
+        
+        model.addAttribute("production", production);
 		
 		String selectedOrderA = "PLATETRT005";
 		String selectedOrderB = "1000486";
