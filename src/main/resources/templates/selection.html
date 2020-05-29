@@ -84,8 +84,13 @@
 
         	        $.each($(".availSiteList option:selected"), function(){            
 
+        	            if(sites.includes($(this).val()) != true){
+        	            	
+        	            	selList.options[selList.options.length] = new Option($(this).val(), $(this).val());
+        	            	
+        	            }
+        	                    	            
         	            sites.push($(this).val());
-        	            selList.options[selList.options.length] = new Option($(this).val(), $(this).val());
         	        });
 
         	        document.getElementById("sitelistID").value = sites.join(", ");
