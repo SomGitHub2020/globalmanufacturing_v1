@@ -108,12 +108,12 @@
         	                           
         	                    	selList.remove(count);
         	                   }
-        	               alert("Removing: " + selList.options[count].val); 
+        	               alert("Removing: " + $(this).val()); 
         	           }
         	           else {
         	        	    
-        	        	   sites.push(selList.options[count].val);
-    	               		alert("Remaining: " + selList.options[count].val); 
+        	        	   sites.push($(this).val());
+    	               		alert("Remaining: " + $(this).val()); 
     	           }
         	       }
 
