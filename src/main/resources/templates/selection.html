@@ -76,6 +76,21 @@
         	    	select.options[select.options.length] = new Option(sitelist[i].site, sitelist[i].site);
         	    	selectNew.options[selectNew.options.length] = new Option(sitelist[i].site, sitelist[i].site);
         	    }
+        	    
+        	    $("#getItems").click(function () {
+				
+        	        var sites = [];
+
+        	        $.each($(".availSiteList option:selected"), function(){            
+
+        	            sites.push($(this).val());
+
+        	        });
+
+        	        alert("You have selected the site - " + sites.join(", "));
+        	        document.getElementById("sitelistID").value = sites.join(", ");
+
+            	});
 
         	    $("#addButton").click(function () {
 
@@ -172,24 +187,18 @@
 	<table>
 		<tr>
 			<td>
-			  <select name="availSiteList" id="availSiteList" multiple size="10" style="width: 150px;">
-			    <option value="volvo">Volvo</option>
-			    <option value="saab">Saab</option>
-			    <option value="opel">Opel</option>
-			    <option value="audi">Audi</option>
+			  <select class="availSiteList" name="availSiteList" id="availSiteList" multiple size="10" style="width: 150px;">
+
 			  </select>
 			</td>
 			<td>
-			   <input type='button' class='button button1' value='Add' id=''>
+			   <input type='button' class='button button1' value='Add' id='getItems'>
 			<br>
 			<input type='button' class='button button2' value='Remove' id=''>
 			</td>
 			<td>
 			  <select name="selectSiteList" id="selectSiteList" multiple size="10" style="width: 150px;">
-			    <option value="volvo">Volvo</option>
-			    <option value="saab">Saab</option>
-			    <option value="opel">Opel</option>
-			    <option value="audi">Audi</option>
+			 
 			  </select>
 			</td>
 		</tr>
