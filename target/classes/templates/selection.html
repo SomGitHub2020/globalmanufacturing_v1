@@ -67,12 +67,14 @@
         	    var counter = 2;
 	       	    var sitelist = [[${sitelists}]] ;
         	    var select = document.getElementById("siteDrop1");
+        	    var selectNew = document.getElementById("availSiteList");
         	    var options = "";
         	    
         	    for (i = 0; i < sitelist.length; i++) {
         	        options += "'<option value="+sitelist[i].site+">"+sitelist[i].site+"</option>'";
            
         	    	select.options[select.options.length] = new Option(sitelist[i].site, sitelist[i].site);
+        	    	selectNew.options[selectNew.options.length] = new Option(sitelist[i].site, sitelist[i].site);
         	    }
 
         	    $("#addButton").click(function () {
@@ -165,14 +167,12 @@
         </p>
     </form>
     </div>
-
-</div>
-
-<div>
+	
+	<div>
 	<table>
 		<tr>
 			<td>
-			  <select name="cars" id="cars" multiple size="10" style="width: 150px;">
+			  <select name="availSiteList" id="availSiteList" multiple size="10" style="width: 150px;">
 			    <option value="volvo">Volvo</option>
 			    <option value="saab">Saab</option>
 			    <option value="opel">Opel</option>
@@ -185,7 +185,7 @@
 			<input type='button' class='button button2' value='Remove' id=''>
 			</td>
 			<td>
-			  <select name="cars" id="cars" multiple size="10" style="width: 150px;">
+			  <select name="selectSiteList" id="selectSiteList" multiple size="10" style="width: 150px;">
 			    <option value="volvo">Volvo</option>
 			    <option value="saab">Saab</option>
 			    <option value="opel">Opel</option>
@@ -194,8 +194,11 @@
 			</td>
 		</tr>
 	</table>
-
+	</div>
+	
 </div>
+
+
 
 </body>
 </html>
