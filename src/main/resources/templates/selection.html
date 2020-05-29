@@ -95,16 +95,31 @@
         	    $("#removeItems").click(function () {
     				
         	        var sites = [];
+       	        
+        	        for(var count= selList.options.length-1; count >= 0; count--) {
 
-        	        $.each($(".selectSiteList option:selected"), function(){            
+        	            //if the option is selected, delete the option
+        	           if(selList.options[count].selected == true) {
+        	    
+        	                   try {
+        	                	   selList.remove(count, null);
+        	                           
+        	                    } catch(error) {
+        	                           
+        	                    	selList.remove(count);
+        	                   }
+        	               alert("Removing: " + selList.options[count].val); 
+        	           }
+        	           else {
+        	        	    
+        	        	   sites.push(selList.options[count].val);
+    	               		alert("Remaining: " + selList.options[count].val); 
+    	           }
+        	       }
 
-        	            sites.push($(this).val());
-        	           
-        	        });
-
-        	        alert("Sites to remove: " + sites.join(", "));
+        	       // alert("Sites to remove: " + sites.join(", "));
         	        
-        	        //document.getElementById("sitelistID").value = sites.join(", ");
+        	       document.getElementById("sitelistID").value = sites.join(", ");
  
             	});
 
