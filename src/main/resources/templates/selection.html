@@ -110,14 +110,14 @@
         	                   }
         	               alert("Removing: " + $(this).val()); 
         	           }
-        	           else {
-        	        	    
-        	        	   sites.push($(this).val());
-    	               		alert("Remaining: " + $(this).val()); 
-    	           }
+        	          
         	       }
 
-        	       // alert("Sites to remove: " + sites.join(", "));
+        	        $.each($(".selectSiteList option"), function(){            
+
+        	            sites.push($(this).val());
+ 
+        	        });
         	        
         	       document.getElementById("sitelistID").value = sites.join(", ");
  
