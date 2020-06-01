@@ -128,55 +128,58 @@
 	<!-- Changes for Calendar Input Date - END -->
     
 </head>
-<body bgcolor="#00bfff">
-	
-<div class="" align="center">
-	<div class="" align="center" style="background-color: #ffffcc"><h4 style="color: blue;">Please Enter Details</h4></div>
-		<div class="" align="center">
-		    <form action="#" th:action="@{/selection}" th:object="${production}" method="post">
-			
-			    <p><input type="Submit" value="Save" /> 
-		              <input type="reset" value="Cancel" onclick="goBack();"/>
-		        <input type="text" id="sitelistID" th:field="*{sitelist}"/>
-		        </p>
-			  
-			    <p>
-			    From (yyyy-MM-dd): <input type="text" id="fromdateID" th:field="*{fromdate}" size="10"/>
-			    </p>
-			    
-			    <p></p>
-			    <p></p>
-				
-				<p>    
-			    To (yyyy-MM-dd): <input type="text" id="todateID" th:field="*{todate}" size="10"/>
-		        </p>
-		
-		
-		    </form>
-	    </div>
-	
-	<div>
-	<table>
-		<tr>
-			<td>
-			  <select class="availSiteList" name="availSiteList" id="availSiteList" multiple size="10" style="width: 150px;">
+ <body>
+	<div class="" align="center">
+		<div class="" align="center" style="background-color: #ffffcc">
+			<h4 style="color: blue;">Global Manufacturing Production Performance</h4>
+		</div>
 
-			  </select>
-			</td>
-			<td>
-			   <input type='button' class='button button1' value='Add' id='addItems'>
-			<br>
-			<input type='button' class='button button2' value='Remove' id='removeItems'>
-			</td>
-			<td>
-			  <select class="selectSiteList" name="selectSiteList" id="selectSiteList" multiple size="10" style="width: 150px;">
-			 
-			  </select>
-			</td>
-		</tr>
-	</table>
-	</div>
+			<div class="" align="center">
+			    <form action="#" th:action="@{/selection}" th:object="${production}" method="post">
+				
+				    <p><input type="Submit" value="Save" /> 
+			              <input type="reset" value="Cancel" onclick="goBack();"/>
+			        <input type="text" id="sitelistID" th:field="*{sitelist}"/>
+			        </p>
+				  
+				    <p>
+				    From (yyyy-MM-dd): <input type="text" id="fromdateID" th:field="*{fromdate}" size="10"/>
+				    </p>
+				    
+				    <p></p>
+				    <p></p>
+					
+					<p>    
+				    To (yyyy-MM-dd): <input type="text" id="todateID" th:field="*{todate}" size="10"/>
+			        </p>
+			
+			
+			    </form>
+		    </div>
+		
+		<div>
+		<table>
+			<tr>
+				<td>
+				  <select class="availSiteList" name="availSiteList" id="availSiteList" multiple size="10" style="width: 150px;">
 	
-</div>
+				  </select>
+				</td>
+				<td>
+				   <input type='button' class='button button1' value='Add' id='addItems'>
+				<br>
+				<input type='button' class='button button2' value='Remove' id='removeItems'>
+				</td>
+				<td>
+				  <select class="selectSiteList" name="selectSiteList" id="selectSiteList" multiple size="10" style="width: 150px;">
+				 
+				  </select>
+				</td>
+			</tr>
+		</table>
+		</div>
+		
+	</div>
+
 </body>
 </html>
