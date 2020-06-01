@@ -94,13 +94,18 @@ public class HomeController {
 	  @PostMapping("/welcomeSel") 
 	  public String selectionForm(Model model) {
 	  
-		 Calendar c = Calendar.getInstance(); c.setTime(date);
-		 c.add(Calendar.DATE, -1);
+		 Calendar c = Calendar.getInstance(); 
+		 c.setTime(date);
+		 c.add(Calendar.DATE, -7);
 		 
 		 Date prevdate = c.getTime();
 		 
-		 production.setFromdate(sdf.format(prevdate)); production.setFromHH("00");
-		 production.setFromMM("00"); production.setFromSS("00");
+		 production.setFromdate(sdf.format(prevdate)); 
+		 production.setTodate(sdf.format(date));
+		 
+		 production.setFromHH("00");
+		 production.setFromMM("00"); 
+		 production.setFromSS("00");
 		 
 		 model.addAttribute("production", production);
 		 
@@ -128,6 +133,7 @@ public class HomeController {
 		String siteBInput = "EXID";
 
 		production.setFromdate(p1.getFromdate());
+		production.setTodate(p1.getTodate());
 		production.setSitelist(p1.getSitelist());
 		
 		

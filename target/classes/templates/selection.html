@@ -53,6 +53,10 @@
              $( "#fromdateID" ).datepicker({  
                 dateFormat:"yy-mm-dd",  
              });  
+             
+             $( "#todateID" ).datepicker({  
+                 dateFormat:"yy-mm-dd",  
+              }); 
           }); 
          
          $(document).ready(function(){
@@ -124,33 +128,32 @@
 	<!-- Changes for Calendar Input Date - END -->
     
 </head>
-<body align="center" bgcolor="#00bfff">
+<body bgcolor="#00bfff">
 	
 <div class="" align="center">
-	<div class="" align="center" style="background-color: #ffffcc">
-			<h4 style="color: blue;">Please Enter Details</h4>
-	</div>
-	<div class="" align="center">
-    <form action="#" th:action="@{/selection}" th:object="${production}" method="post">
-	
-	    <p><input type="Submit" value="Save" /> 
-              <input type="reset" value="Cancel" onclick="goBack();"/>
-        <input type="text" id="sitelistID" th:field="*{sitelist}"/>
-        </p>
-	  
-	    <p>From Date (yyyy-MM-dd): <input type="text" id="fromdateID" th:field="*{fromdate}" size="10"/>
-	    HH:
-	    <input type="text" id="time-HH" th:field="*{fromHH}" maxlength="2" size="2">
-	    mm:
-	    <input type="text" id="time-mm" th:field="*{fromMM}" maxlength="2" size="2">
-	    ss:
-	    <input type="text" id="time-ss" th:field="*{fromSS}" maxlength="2" size="2">
-	    
-	    </p>
-
-
-    </form>
-    </div>
+	<div class="" align="center" style="background-color: #ffffcc"><h4 style="color: blue;">Please Enter Details</h4></div>
+		<div class="" align="center">
+		    <form action="#" th:action="@{/selection}" th:object="${production}" method="post">
+			
+			    <p><input type="Submit" value="Save" /> 
+		              <input type="reset" value="Cancel" onclick="goBack();"/>
+		        <input type="text" id="sitelistID" th:field="*{sitelist}"/>
+		        </p>
+			  
+			    <p>
+			    From (yyyy-MM-dd): <input type="text" id="fromdateID" th:field="*{fromdate}" size="10"/>
+			    </p>
+			    
+			    <p></p>
+			    <p></p>
+				
+				<p>    
+			    To (yyyy-MM-dd): <input type="text" id="todateID" th:field="*{todate}" size="10"/>
+		        </p>
+		
+		
+		    </form>
+	    </div>
 	
 	<div>
 	<table>
@@ -175,8 +178,5 @@
 	</div>
 	
 </div>
-
-
-
 </body>
 </html>

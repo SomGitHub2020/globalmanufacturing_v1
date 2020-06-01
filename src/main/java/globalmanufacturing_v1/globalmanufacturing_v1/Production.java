@@ -2,6 +2,7 @@ package globalmanufacturing_v1.globalmanufacturing_v1;
 
 public class Production {
 	public String fromdate;
+	public String todate;
 	public String fromHH;
 	public String fromMM;
 	public String fromSS;
@@ -13,6 +14,14 @@ public class Production {
 
 	public void setFromdate(String fromdate) {
 		this.fromdate = fromdate;
+	}
+
+	public String getTodate() {
+		return todate;
+	}
+
+	public void setTodate(String todate) {
+		this.todate = todate;
 	}
 
 	public String getFromHH() {
