@@ -41,8 +41,6 @@
 	  <!-- Javascript -->  
       <script th:inline="javascript">  
       /*<![CDATA[*/
-    	 
-    	 var selectedSiteList = []; 
     	  
     	 function goBack() 
     	 {
@@ -50,12 +48,7 @@
     		 window.location.href = "/connectedplants/src/main/resources/templates/welcome.html";
     	 }
     	  
-      	function getSelectedItem(selected,i){
-      		selectedSiteList[i-1] = selected.value;
-      		
-      		document.getElementById("sitelistID").value = selectedSiteList.join();
-      	}
-      
+    
          $(function() {  
              $( "#fromdateID" ).datepicker({  
                 dateFormat:"yy-mm-dd",  
@@ -64,17 +57,13 @@
          
          $(document).ready(function(){
 
-        	    var counter = 2;
-	       	    var sitelist = [[${sitelists}]] ;
-        	    var select = document.getElementById("siteDrop1");
+        	  	var sitelist = [[${sitelists}]] ;
+        	    
         	    var availList = document.getElementById("availSiteList");
         	    var selList = document.getElementById("selectSiteList");
-        	    var options = "";
         	    
         	    for (i = 0; i < sitelist.length; i++) {
-        	        options += "'<option value="+sitelist[i].site+">"+sitelist[i].site+"</option>'";
-           
-        	    	select.options[select.options.length] = new Option(sitelist[i].site, sitelist[i].site);
+        	    	
         	    	availList.options[availList.options.length] = new Option(sitelist[i].site, sitelist[i].site);
         	    }
         	    
@@ -126,45 +115,6 @@
         	       document.getElementById("sitelistID").value = sites.join(", ");
  
             	});
-
-        	    $("#addButton").click(function () {
-
-        		if(counter>2){
-        	            alert("Max. 2 sites are allowed");
-        	            return false;
-        		}
-
-        		var newTextBoxDiv = $(document.createElement('div'))
-        		     .attr("id", 'siteDropDiv' + counter);
-
-        		newTextBoxDiv.after().html('<label>SITE #'+ counter + ' : </label>' +
-        		            		
-        		'<select id="siteDrop' + counter + '" name="siteDrop' + counter + '" onChange="getSelectedItem(this,'+counter+');">' +
-				'<option value="0">Select Site</option>' +
-				options +
-				'</select>'
-				
-				);
-
-        		newTextBoxDiv.appendTo("#siteDropGroup");
-
-
-        		counter++;
-        	     });
-
-        	     $("#removeButton").click(function () {
-        		if(counter==2){
-        	          alert("At least one Site should be selected!");
-        	          return false;
-        	       }
-
-        		counter--;
-
-        	        $("#siteDropDiv" + counter).remove();
-
-        	     });
-
-
         	     
         	  });
 	
@@ -193,26 +143,9 @@
 	    <input type="text" id="time-ss" th:field="*{fromSS}" maxlength="2" size="2">
 	    
 	    </p>
-	   <div class="" align="center" style="background-color: #ffffcc">
-			<h4 style="color: blue;">Site List</h4>
-			
-		</div>  
-	   
-	
-	 	<div id='siteDropGroup'>
-			<div id="siteDropDiv1">
-				<label>SITE #1 : </label>			
-				<select id="siteDrop1" name="siteDrop" onChange="getSelectedItem(this,1);">
-							<option value="0">Select Site</option>
-							
-				</select>
-			</div>
-		</div>
 
         <p><input type="Submit" value="Save" /> 
-        <input type='button' class='button button1' value='Add' id='addButton'>
-		<input type='button' class='button button2' value='Remove' id='removeButton'>
-        <input type="reset" value="OK" onclick="goBack();"/>
+              <input type="reset" value="Cancel" onclick="goBack();"/>
         <input type="text" id="sitelistID" th:field="*{sitelist}"/>
         </p>
     </form>
