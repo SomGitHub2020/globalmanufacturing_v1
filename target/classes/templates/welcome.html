@@ -94,7 +94,7 @@
 			
 				<td>
 					<form action="#" th:action="@{/welcomeSel}" th:object="${login}" method="post">
-						<div class="flip-card">
+						<div class="flip-card" onclick="javascript:this.form.submit();">
 							<div class="flip-card-inner">
 	<!-- 							<div class="flip-card-front" style="background-color: #a6a6a6">
 									<img src="/Images/prod-performance-icon.png" alt="Production Analysis"
@@ -111,10 +111,10 @@
 										<a href="#"><i class="fa fa-dribbble"></i></a>
 									</div>
 									
-										<p>
-											<!-- <input type="submit" value="Open"/> -->
+									<!-- 	<p>
+											<input type="submit" value="Open"/>
 											<button type="submit">Open</button>
-										</p>
+										</p> -->
 									
 								</div>
 	
