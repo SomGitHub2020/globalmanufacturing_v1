@@ -125,92 +125,95 @@
 				</td>
 			
 				<td>
-					<div class="flip-card">
-						<div class="flip-card-inner">
-<!-- 							<div class="flip-card-front" style="background-color: #a6a6a6">
-								<img src="/Images/prod-performance-icon.png" alt="Production Analysis"
-									style="width: 300px; height: 300px;">
-									<img src="https://raw.githubusercontent.com/SomGitHub2020/ConnectedPlantsRepo/master/Images/global-settings-icon.png" alt="Global Settings"
-									style="width: 300px; height: 300px; border: 1px solid 3333ff">								
+					<form name="selform" action="#" th:action="@{/welcomeSel}" th:object="${login}" method="post">
+						<div class="flip-card" style="cursor:pointer" onclick="javascript:document.forms.selform.submit();">
+							<div class="flip-card-inner">
+	<!-- 							<div class="flip-card-front" style="background-color: #a6a6a6">
+									<img src="/Images/prod-performance-icon.png" alt="Production Analysis"
+										style="width: 300px; height: 300px;">
+										<img src="https://raw.githubusercontent.com/SomGitHub2020/ConnectedPlantsRepo/master/Images/global-settings-icon.png" alt="Global Settings"
+										style="width: 300px; height: 300px; border: 1px solid 3333ff">								
+										
+								</div> -->
+								<div class="flip-card-back" style="background-color: #a6a6a6">
+									<h2>Global Settings</h2>
+									<p class="title">View and Edit the Global Configuration</p>
+									<p>Global Manufacturing</p>
+									<div style="margin: 24px 0;">
+										<a href="#"><i class="fa fa-dribbble"></i></a>
+									</div>
 									
-							</div> -->
-							<div class="flip-card-back" style="background-color: #a6a6a6">
-								<h2>Global Settings</h2>
-								<p class="title">View and Edit the Global Configuration</p>
-								<p>Global Manufacturing</p>
-								<div style="margin: 24px 0;">
-									<a href="#"><i class="fa fa-dribbble"></i></a>
+<!-- 										<p>
+											<input type="submit" value="Open"/>
+											<button type="submit">Open</button>
+										</p> -->
+									
 								</div>
-								<form action="#" th:action="@{/welcomeSel}" th:object="${login}" method="post">
-									<p>
-										<!-- <input type="submit" value="Open"/> -->
-										<button type="submit">Open</button>
-									</p>
-								</form>
+	
 							</div>
-
+	
 						</div>
-
-					</div>
-
+					</form>
 				</td>
 
 				<td>
-					<div class="flip-card">
-						<div class="flip-card-inner">
-<!-- 							<div class="flip-card-front" style="background-color: #ffb3b3">
-								<img src="/Images/prod-performance-icon.png" alt="Production Analysis"
-									style="width: 300px; height: 300px;">
-									<img src="https://raw.githubusercontent.com/SomGitHub2020/ConnectedPlantsRepo/master/Images/prod-performance-icon.png" alt="Production Analysis"
-									style="width: 300px; height: 300px; border: 1px solid 3333ff">								
+					<form name="prodform" action="#" th:action="@{/welcomeProd}" method="post">
+						<div class="flip-card" style="cursor:pointer" onclick="javascript:document.forms.prodform.submit();">
+							<div class="flip-card-inner">
+	<!-- 							<div class="flip-card-front" style="background-color: #ffb3b3">
+									<img src="/Images/prod-performance-icon.png" alt="Production Analysis"
+										style="width: 300px; height: 300px;">
+										<img src="https://raw.githubusercontent.com/SomGitHub2020/ConnectedPlantsRepo/master/Images/prod-performance-icon.png" alt="Production Analysis"
+										style="width: 300px; height: 300px; border: 1px solid 3333ff">								
+										
+								</div> -->
+								<div class="flip-card-back" style="background-color: #ffb3b3">
+									<h2>Production Analysis</h2>
+									<p class="title">View and Compare Order Performance</p>
+									<p>Global Manufacturing</p>
+									<div style="margin: 24px 0;">
+										<a href="#"><i class="fa fa-dribbble"></i></a>
+									</div>
 									
-							</div> -->
-							<div class="flip-card-back" style="background-color: #ffb3b3">
-								<h2>Production Analysis</h2>
-								<p class="title">View and Compare Order Performance</p>
-								<p>Global Manufacturing</p>
-								<div style="margin: 24px 0;">
-									<a href="#"><i class="fa fa-dribbble"></i></a>
+<!-- 										<p>
+											<input type="submit" value="Open"/>
+											<button type="submit">Open</button>
+										</p> -->
+								
 								</div>
-								<form action="#" th:action="@{/welcomeProd}" method="post">
-									<p>
-										<!-- <input type="submit" value="Open"/> -->
-										<button type="submit">Open</button>
-									</p>
-									<p th:text="${production.sitelist}" />
-								</form>
+	
 							</div>
-
+	
 						</div>
-
-					</div>
-
+					</form>
 				</td>
 				<td>
-					<div class="flip-card">
-						<div class="flip-card-inner">
-<!-- 							<div class="flip-card-front" style="background-color: #00ffff">
-								<img src="https://raw.githubusercontent.com/SomGitHub2020/ConnectedPlantsRepo/master/Images/res-analysis-icon-new.png" alt="Production Analysis"
-									style="width: 300px; height: 300px; border: 1px solid 3333ff">
-							</div> -->
-							<div class="flip-card-back" style="background-color: #00ffff">
-								<h2>Resource Analysis</h2>
-								<p class="title">Manufacturing Predictive Maintenance</p>
-								<p>Global Manufacturing</p>
-								<div style="margin: 24px 0;">
-									<a href="#"><i class="fa fa-dribbble"></i></a>
+					<form name="resform" action="#" th:action="@{/welcomeRes}" method="post">
+						<div class="flip-card" style="cursor:pointer" onclick="javascript:document.forms.resform.submit();">
+							<div class="flip-card-inner">
+	<!-- 							<div class="flip-card-front" style="background-color: #00ffff">
+									<img src="https://raw.githubusercontent.com/SomGitHub2020/ConnectedPlantsRepo/master/Images/res-analysis-icon-new.png" alt="Production Analysis"
+										style="width: 300px; height: 300px; border: 1px solid 3333ff">
+								</div> -->
+								<div class="flip-card-back" style="background-color: #00ffff">
+									<h2>Resource Analysis</h2>
+									<p class="title">Manufacturing Predictive Maintenance</p>
+									<p>Global Manufacturing</p>
+									<div style="margin: 24px 0;">
+										<a href="#"><i class="fa fa-dribbble"></i></a>
+									</div>
+									
+<!-- 										<p>
+											<input type="submit" value="Open"/>
+											<button type="submit">Open</button>
+										</p> -->
+									
 								</div>
-								<form action="#" th:action="@{/welcomeRes}" method="post">
-									<p>
-										<!-- <input type="submit" value="Open"/> -->
-										<button type="submit">Open</button>
-									</p>
-								</form>
+	
 							</div>
-
+	
 						</div>
-
-					</div>
+					</form>
 				</td>
 			</tr>
 		</table>
