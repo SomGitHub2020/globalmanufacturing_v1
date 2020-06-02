@@ -93,8 +93,8 @@
 			<tr>
 			
 				<td>
-					<form action="#" th:action="@{/welcomeSel}" th:object="${login}" method="post">
-						<div class="flip-card" onclick="javascript:this.form.submit();">
+					<form name="testform" action="#" th:action="@{/welcomeSel}" th:object="${login}" method="post">
+						<div class="flip-card" style="cursor:pointer" onclick="javascript:document.forms.testform.submit();">
 							<div class="flip-card-inner">
 	<!-- 							<div class="flip-card-front" style="background-color: #a6a6a6">
 									<img src="/Images/prod-performance-icon.png" alt="Production Analysis"
