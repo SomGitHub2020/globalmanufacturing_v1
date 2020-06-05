@@ -1,0 +1,656 @@
+<!DOCTYPE HTML>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<title>Production Analysis - View</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet"
+	href="https://code.highcharts.com/css/highcharts.css" />
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="http://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/drilldown.js"></script>
+
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.1/jquery.min.js"></script>
+<!-- 5 include the minified jstree source -->
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/jstree.min.js"></script>
+<script>
+	
+</script>
+
+
+<script th:inline="javascript">
+	/*<![CDATA[*/
+
+	// My JSON Data
+	const locations = [ {
+		id : 1,
+		name : "PPME",
+		parentId : null,
+		type : "site"
+	}, {
+		id : 2,
+		name : "WC1",
+		parentId : 1,
+		type : "wc"
+	}, {
+		id : 3,
+		name : "WC2",
+		parentId : 1,
+		type : "wc"
+	}, {
+		id : 4,
+		name : "RES1",
+		parentId : 2,
+		type : "res"
+	}, {
+		id : 5,
+		name : "RES2",
+		parentId : 2,
+		type : "res"
+	}, {
+		id : 6,
+		name : "RES3",
+		parentId : 3,
+		type : "res"
+	}, {
+		id : 7,
+		name : "RES4",
+		parentId : 3,
+		type : "res"
+	}, {
+		id : 8,
+		name : "EXID",
+		parentId : null,
+		type : "site"
+	}, {
+		id : 9,
+		name : "WC3",
+		parentId : 8,
+		type : "wc"
+	}, {
+		id : 10,
+		name : "RES5",
+		parentId : 9,
+		type : "res"
+	}, {
+		id : 11,
+		name : "RES6",
+		parentId : 9,
+		type : "res"
+	} ];
+	function createTreeView(location) {
+		var tree = [], object = {}, parent, child;
+
+		for (var i = 0; i < location.length; i++) {
+			parent = location[i];
+
+			object[parent.id] = parent;
+			object[parent.id]["children"] = [];
+		}
+
+		for ( var id in object) {
+			if (object.hasOwnProperty(id)) {
+				child = object[id];
+				// i made some changes here incase some element is missing so you dont get error and just append th tree insetad 
+				if (child.parentId && object[child["parentId"]]) {
+					object[child["parentId"]]["children"].push(child);
+				} else {
+					tree.push(child);
+				}
+			}
+		}
+		return tree;
+	}
+
+	//var str = "";
+	 var myList = new Array();
+	 //var myList[];
+	
+	function myFunction(value) {
+	
+		//myList.push(value);
+		
+		if(myList.indexOf(value) > -1){
+			myList.splice(myList.indexOf(value), 1);
+		}
+		else{
+		
+			if(myList.length == 2){
+				alert("Only 2 Resources can be compared");
+			}else{			
+				myList.push(value);
+			}
+		}
+		
+	
+		
+		//alert("Final String : " + myList.join(","));
+		//loadResComparison();
+	}
+	
+	function loadResComparison(){
+	
+	
+	
+	var text = '[{"name": "Reason 3","y": '+Math.floor(Math.random() * 100)+'}, {"name": "Reason 7","y": '+Math.floor(Math.random() * 100)+'}]';
+			var myObj = JSON.parse(text);
+
+			Highcharts
+					.chart(
+							'containerres1',
+							{
+								chart : {
+									plotBackgroundColor : null,
+									plotBorderWidth : null,
+									plotShadow : false,
+									type : 'pie'
+								},
+								title : {
+									text : 'Resource '+myList[0]+' Status in Duration (%)'
+								},
+								tooltip : {
+									pointFormat : '{series.name}: <b>{point.percentage:.1f}%</b>'
+								},
+								accessibility : {
+									point : {
+										valueSuffix : '%'
+									}
+								},
+								plotOptions : {
+									pie : {
+										allowPointSelect : true,
+										cursor : 'pointer',
+										dataLabels : {
+											enabled : true,
+											format : '<b>{point.name}</b>: {point.percentage:.1f} %'
+										}
+									},
+									series : {
+										cursor : 'pointer',
+										point : {
+											events : {
+												click : function() {
+													//location.href = this.options.url;
+													//alert(this.name);
+													//loadWC();
+												}
+											}
+										}
+									}
+								},
+								series : [ {
+									name : 'Percentage',
+									colorByPoint : true,
+									data : myObj
+								} ]
+							});
+
+			var text = '[{"name": "Reason 1","y": '+Math.floor(Math.random() * 100)+'}, {"name": "Reason 2","y": '+Math.floor(Math.random() * 100)+'},{"name": "Reason 8","y": '+Math.floor(Math.random() * 100)+'}, {"name": "Reason 11","y": '+Math.floor(Math.random() * 100)+'}]';
+			var myObj = JSON.parse(text);
+
+			Highcharts
+					.chart(
+							'containerres2',
+							{
+								chart : {
+									plotBackgroundColor : null,
+									plotBorderWidth : null,
+									plotShadow : false,
+									type : 'pie'
+								},
+								title : {
+									text : 'Resource '+myList[1]+' Status in Duration (%)'
+								},
+								tooltip : {
+									pointFormat : '{series.name}: <b>{point.percentage:.1f}%</b>'
+								},
+								accessibility : {
+									point : {
+										valueSuffix : '%'
+									}
+								},
+								plotOptions : {
+									pie : {
+										allowPointSelect : true,
+										cursor : 'pointer',
+										dataLabels : {
+											enabled : true,
+											format : '<b>{point.name}</b>: {point.percentage:.1f} %'
+										}
+									},
+									series : {
+										cursor : 'pointer',
+										point : {
+											events : {
+												click : function() {
+													//location.href = this.options.url;
+													//alert(this.name);
+													//loadWC();
+												}
+											}
+										}
+									}
+								},
+								series : [ {
+									name : 'Percentage',
+									colorByPoint : true,
+									data : myObj
+								} ]
+							});
+
+		
+	
+	}
+	
+
+	// here is how you build your UL treeview recursively
+	function CreateUlTreeView(items, parent) {
+		var ul = document.createElement("ul");
+		if (parent)
+			parent.appendChild(ul);
+		items.forEach(function(x) {
+			var li = document.createElement("li");
+			var text = document.createElement("span");
+			text.innerHTML = x.name;
+			li.appendChild(text);
+
+			if (x.type == "res") {
+				var button_check = document.createElement("input");
+				button_check.setAttribute("type", "checkbox");
+				
+				var att = document.createAttribute("onclick");       // Create a "class" attribute
+				att.value = "myFunction('"+x.name+"')"; 
+				button_check.setAttributeNode(att);
+				
+				li.appendChild(button_check);
+
+			}
+
+			if (x.children && x.children.length > 0)
+				CreateUlTreeView(x.children, li);
+
+			ul.append(li);
+		});
+		return ul;
+	}
+	var root = createTreeView(locations);
+
+	function loadBarChart(){
+	
+	CreateUlTreeView(root, document.getElementById("container"))
+	 var chart;
+    
+   
+   var myObj;
+   
+   var text = '{"sites":[ "PPME-WC1", "PPME-WC2", "EXID-WC3"],"qty": [{"y": 40,"color": "blue"},{"y": 50,"color": "green"},{"y": 35,"color": "red"}]}';
+		           
+				   
+	//var text1 = '[{"y": 50,"color": "red","drilldown": {"categories": ["cat1","cat2","cat3","cat4"], "series": [{"type": "column","name": "Target","data": [10.85, 7.35, 33.06, 2.81], "color": "blue"},{"type": "column","name": "Actual","data": [1, 5, 10, 15], "color": "green"}]}}]';
+    
+    var myObj = JSON.parse(text);
+   
+   
+        var colors = Highcharts.getOptions().colors,
+            categories = myObj.sites,
+            name = ['Site1','Site2'],
+            data = myObj.qty;
+   
+        function setChart(name, categories, data, color, type) {
+            var len = chart.series.length;
+            chart.xAxis[0].setCategories(categories);
+            for(var i = 0; i < len; i++){
+                console.log(chart.series.length);
+                chart.series[0].remove();
+            }
+            console.log('a');
+            if(data.series){
+                for(var i = 0; i < data.series.length; i ++ ){
+                    chart.addSeries({
+                        name: data.series[i].name,
+                        data: data.series[i].data,
+                        type: data.series[i].type,
+                        color: data.series[i].color || 'white'
+                    });
+                }
+            } else {
+                    chart.addSeries({
+                        name: 'Sites',
+                        data: data,
+                        type: type,
+                        color: color || 'white'
+                    });
+            }
+        }
+   
+        chart = new Highcharts.Chart({
+            chart: {
+                renderTo: 'containerwc2',
+                type: 'column'
+            },
+            title: {
+                text: 'Line Availability'
+            },
+            subtitle: {
+                text: 'Select Resourced from Left Tree to Compare'
+            },
+            xAxis: {
+                categories: categories
+            },
+            yAxis: {
+                title: {
+                    text: 'Availability (%)'
+                }
+            },
+            plotOptions: {
+                column: {
+                    cursor: 'pointer',
+                    point: {
+                        events: {
+                            click: function() {
+                                var drilldown = this.drilldown;
+                                if (drilldown) { // drill down
+                                    setChart(null, drilldown.categories, drilldown, drilldown.type);
+                                } else { // restore
+                                    setChart(name, categories, data, 'column');
+                                }
+                            }
+                        }
+                    },
+                    dataLabels: {
+                        enabled: true
+                 
+                    }
+                },
+                spline: {
+                    cursor: 'pointer',
+                    point: {
+                        events: {
+                            click: function() {
+                                var drilldown = this.drilldown;
+                                if (drilldown) { // drill down
+                                    setChart(null, drilldown.categories, drilldown, drilldown.type);
+                                } else { // restore
+                                    setChart(name, categories, data, 'column');
+                                }
+                            }
+                        }
+                    },
+                    dataLabels: {
+                        enabled: false
+                    }
+                }
+            },
+            tooltip: {
+                formatter: function() {
+                    var point = this.point,
+                        s = this.x +':<b>'+ this.y +'% Production</b><br/>';
+                    if (point.drilldown) {
+                        s += 'Click to view '+ point.category +' orders';
+                    } else {
+                        s += 'Click to return to sites';
+                    }
+                    return s;
+                }
+            },
+            series: [{
+                name: 'Sites',
+                data: data,
+                color: 'white'
+            }],
+            exporting: {
+                enabled: true
+            }
+        });
+				   
+				   
+	                    
+	                
+		        
+	
+	
+	}
+	
+	
+	function loadWC() {
+		CreateUlTreeView(root, document.getElementById("container"))
+		//alert("Inside loadWC");
+
+		//load site1 wc
+		var text = '[{"name": "WC1","y": 61.41}, {"name": "WC2","y": 11.84},{"name": "WC3","y": 14}]';
+		var myObj = JSON.parse(text);
+
+		Highcharts
+				.chart(
+						'containerwc1',
+						{
+							chart : {
+								plotBackgroundColor : null,
+								plotBorderWidth : null,
+								plotShadow : false,
+								type : 'pie'
+							},
+							title : {
+								text : 'Performance analysis for EXID'
+							},
+							tooltip : {
+								pointFormat : '{series.name}: <b>{point.percentage:.1f}%</b>'
+							},
+							accessibility : {
+								point : {
+									valueSuffix : '%'
+								}
+							},
+							plotOptions : {
+								pie : {
+									allowPointSelect : true,
+									cursor : 'pointer',
+									dataLabels : {
+										enabled : true,
+										format : '<b>{point.name}</b>: {point.percentage:.1f} %'
+									}
+								},
+								series : {
+									cursor : 'pointer',
+									point : {
+										events : {
+											click : function() {
+												//location.href = this.options.url;
+												//alert(this.name);
+												loadRes(this.name);
+											}
+										}
+									}
+								}
+							},
+							series : [ {
+								name : 'Rate',
+								colorByPoint : true,
+								data : myObj
+							} ]
+						});
+
+		//load site2 wc
+		var text = '[{"name": "WC4","y": 71.41}, {"name": "WC5","y": 29}]';
+		var myObj = JSON.parse(text);
+
+		Highcharts
+				.chart(
+						'containerwc3',
+						{
+							chart : {
+								plotBackgroundColor : null,
+								plotBorderWidth : null,
+								plotShadow : false,
+								type : 'pie'
+							},
+							title : {
+								text : 'Performance analysis for PPME'
+							},
+							tooltip : {
+								pointFormat : '{series.name}: <b>{point.percentage:.1f}%</b>'
+							},
+							accessibility : {
+								point : {
+									valueSuffix : '%'
+								}
+							},
+							plotOptions : {
+								pie : {
+									allowPointSelect : true,
+									cursor : 'pointer',
+									dataLabels : {
+										enabled : true,
+										format : '<b>{point.name}</b>: {point.percentage:.1f} %'
+									}
+								},
+								series : {
+									cursor : 'pointer',
+									point : {
+										events : {
+											click : function() {
+												//location.href = this.options.url;
+												//alert(this.name);
+												loadRes(this.name);
+											}
+										}
+									}
+								}
+							},
+							series : [ {
+								name : 'Rate',
+								colorByPoint : true,
+								data : myObj
+							} ]
+						});
+	}
+	
+	
+	$(function() {
+		var chart;
+		$(document).ready(function() {
+
+			loadBarChart();
+			//loadWC();
+			
+
+		});
+
+	});
+
+	/*]]>*/
+</script>
+
+
+</head>
+<body>
+	<style>
+	button{
+border-radius: 5px;
+height: 35px;
+width:100px;
+border:1px solid white;
+	}
+	#treedetail{
+	background-image: linear-gradient( 110.9deg,  rgba(44,221,239,1) 1.1%, rgba(14,191,210,1) 37.6%, rgba(8,127,140,1) 99.2% );
+	
+
+	}
+	.masterpage{
+	background-image: radial-gradient( circle 343px at 46.3% 47.5%,  rgba(242,242,242,1) 0%, rgba(241,241,241,1) 72.9% );
+	}
+	#buttonSelect{
+	position:relative;
+	top: 10%;
+  left: 35%;
+	}
+	.header{
+	background-color: #f1f2f6;
+background-image: linear-gradient(to bottom, #c9c6c6 1%,#f1f2f6 51%, #c9c6c9 90%);
+height:60px;display: flex;justify-content: center;border-bottom:5px solid rgba(14,191,210,1)
+	}
+figure{
+    margin: 10px;
+	border-radius:10px
+}
+figure div{
+border-radius:20px
+}
+	</style>
+	<div class="header"><div style="margin-top: 2px;font-size:30px">Resource Analysis</div></div>
+	<table>
+		<tr>
+			<td id="treedetail" align="top" width="4%">
+			
+				<div id="container" style="width:300px; height:400px;"></div>
+				<div id="buttonSelect">
+					<button onclick="loadResComparison()">Compare</button>
+				</div>
+			
+			</td>
+			<td width="5%" class="masterpage">
+			</td>
+			<td class="masterpage" width="50%">
+				<table>
+					<!--<tr>
+						<td>
+							<figure class="highcharts-figure">
+								<div id="containerwc1" style="width:1000px; height:400px;"></div>
+							</figure>
+						</td>
+						
+					</tr>-->
+					<tr>
+						<td>
+							<figure class="highcharts-figure">
+								<div id="containerwc2" style="width:1000px; height:400px;"></div>
+							</figure>
+						</td>
+						
+					</tr>
+					</table>
+					
+					<table>
+					<tr>
+						<td>
+							<figure class="highcharts-figure">
+								<div id="containerres1" style="width:500px; height:400px;"></div>
+							</figure>
+						</td>
+						<td>
+							<figure class="highcharts-figure">
+								<div id="containerres2" style="width:500px; height:400px;></div>
+							</figure>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+	
+
+
+
+
+	<figure class="highcharts-figure">
+		<div id="container1"></div>
+	</figure>
+
+	<div id="feedback"></div>
+	<!-- <div id="container" style="min-width: 400px; height: 400px; margin: 0 auto"></div>-->
+
+</body>
+</html>

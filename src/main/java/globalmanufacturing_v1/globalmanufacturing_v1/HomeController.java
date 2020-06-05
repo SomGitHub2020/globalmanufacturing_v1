@@ -403,6 +403,7 @@ public class HomeController {
     
 		
 		//return "res_analysis_demo";
-		return "res_analysis";
+		//return "res_analysis";
+		return "res_analysis_new";
 	}
 }
