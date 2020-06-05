@@ -9,12 +9,14 @@ import java.util.List;
 
 public class SiteDetails {
 
+	String conndetail = "jdbc:mysql://globalmfgservicev1:3306/globalmfgdbv1?user=root&password=aslf3N7yCh0iDR5l&useSSL=false";
+	
 	public void getSiteList(List<SiteList> lstSiteLists) throws IOException {
 		
 		String result="";
         try{  
             Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection con=DriverManager.getConnection("jdbc:mysql://globalmfgservice:3306/globalmfgdb?user=root&password=igCotOwKrnqrA310&useSSL=false");  
+            Connection con=DriverManager.getConnection(conndetail);  
             Statement stmt=con.createStatement();  
             ResultSet rs=stmt.executeQuery(
             		"SELECT distinct SITE, DESCRIPION FROM `SITE_MASTER` "
