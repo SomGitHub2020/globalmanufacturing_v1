@@ -123,39 +123,9 @@ div {
         	       
         	        document.getElementById("sitelistID").value = sites.join(", ");
         	        
-
-
-      /*   	        for(var row = 0; row < 5; row++) {
-        	            mycurrent_row=document.createElement("tr");
-        	        
-						var a = mycurrent_row.insertCell(0);
-        	            var x = mycurrent_row.insertCell(1);
-        	   			var y = mycurrent_row.insertCell(2);
-        	   			var z = mycurrent_row.insertCell(3);
-        	                
-        	            var button_rem = document.createElement("input");
-        	 			button_rem.setAttribute("type", "checkbox");
-        	     		button_rem.setAttribute("name", "record");
-        	     
-        	     		var button_date1 = document.createElement("input");
-        	 			button_date1.setAttribute("type", "date");
-        	     
-        	  			var button_date2 = document.createElement("input");
-        	 			button_date2.setAttribute("type", "date");
-						
-        	 			a.append(button_rem);
-		        	  	x.innerHTML = "PPME";
-		        	   	y.append(button_date1);
-		        	   	z.append(button_date2);
- 
-        	            mytablebody.appendChild(mycurrent_row);
-        	        } */
-        	        
-        	   
-
             	});
         	    
-        	    $("#removeItems").click(function () {
+/*         	    $("#removeItems").click(function () {
     				
         	        var sites = [];
        	        
@@ -183,7 +153,15 @@ div {
         	        
         	       document.getElementById("sitelistID").value = sites.join(", ");
  
-            	});
+            	}); */
+        	    
+                $("#removeItems").click(function(){
+                    $("table tbody").find('input[name="record"]').each(function(){
+                    	if($(this).is(":checked")){
+                            $(this).parents("tr").remove();
+                        }
+                    });
+                });
         	     
         	  });
 	
