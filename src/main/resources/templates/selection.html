@@ -50,6 +50,39 @@ div {
     		 window.location.href = "/connectedplants/src/main/resources/templates/welcome.html";
     	 }
     	  
+		function confirmSite(r){
+				
+                var x = r.parentNode.parentNode.childNodes[1].innerHTML;
+
+                var getfromid = "fromdt_" + x;
+                var gettoid = "todt_" + x;
+                
+                var fromd = document.getElementById(getfromid).value;
+                var tod = document.getElementById(gettoid).value;
+                
+                document.getElementById(getfromid).disabled = true;
+                document.getElementById(gettoid).disabled = true;
+                r.value = "Confirmed";
+                r.style.backgroundColor = "#80ff00"; 
+                alert(fromd);
+                alert(tod);
+ 		}
+                 
+		function editSite(r){
+				
+                var x = r.parentNode.parentNode.childNodes[1].innerHTML;
+
+                var getfromid = "fromdt_" + x;
+                var gettoid = "todt_" + x;
+                
+                var getbtnconfirmid = "Confirm_" + x;
+                
+                document.getElementById(getfromid).disabled = false;
+                document.getElementById(gettoid).disabled = false;
+                
+                document.getElementById(getbtnconfirmid).value = "Confirm";
+
+ 		}
     
          $(function() {  
              $( "#fromdateID" ).datepicker({  
@@ -59,6 +92,7 @@ div {
              $( "#todateID" ).datepicker({  
                  dateFormat:"yy-mm-dd",  
               }); 
+             
           }); 
          
          $(document).ready(function(){
@@ -81,6 +115,12 @@ div {
     	        
     	      	mytable.appendChild(mytablebody);
     	        mydiv.appendChild(mytable);
+    	        
+    	        var today = new Date();
+    	        var mm = today.getMonth()+1;
+    	        var mm = ("0" + mm).slice(-2);
+    	        var dd = today.getDate();
+    	        var dd = ("0" + dd).slice(-2);
         	    
         	    $("#addItems").click(function () {
 				
@@ -98,10 +138,11 @@ div {
         	            
         	            mycurrent_row=document.createElement("tr");
             	        
-						var a = mycurrent_row.insertCell(0);
-        	            var x = mycurrent_row.insertCell(1);
-        	   			var y = mycurrent_row.insertCell(2);
-        	   			var z = mycurrent_row.insertCell(3);
+        				mytd_0 = document.createElement("td");
+        	            mytd_1 = document.createElement("td");
+        	            mytd_2 = document.createElement("td");
+        	            mytd_3 = document.createElement("td");
+        	            mytd_4 = document.createElement("td");
         	                
         	            var button_rem = document.createElement("input");
         	 			button_rem.setAttribute("type", "checkbox");
@@ -109,14 +150,40 @@ div {
         	     
         	     		var button_date1 = document.createElement("input");
         	 			button_date1.setAttribute("type", "date");
+        	 			button_date1.setAttribute("id", "fromdt_"+$(this).val());
+        	 		    button_date1.setAttribute("value",today.getFullYear()+"-"+mm+"-"+dd);
         	     
         	  			var button_date2 = document.createElement("input");
         	 			button_date2.setAttribute("type", "date");
+        	 			button_date2.setAttribute("id", "todt_"+$(this).val());
+        	 		    button_date2.setAttribute("value",today.getFullYear()+"-"+mm+"-"+dd);
 						
-        	 			a.append(button_rem);
-		        	  	x.innerHTML = $(this).val();
-		        	   	y.append(button_date1);
-		        	   	z.append(button_date2);
+        	 		   	var button_confirm = document.createElement("input");
+        	 			button_confirm.setAttribute("type", "button");
+        	 		    button_confirm.setAttribute("value", "Confirm");
+        	 		    button_confirm.setAttribute("id", "Confirm_"+$(this).val());
+        	 	       	var att = document.createAttribute("onclick");      
+        	 	        att.value = "confirmSite(this)"; 
+        	 			button_confirm.setAttributeNode(att);
+        	 			
+        	 		    var button_edit = document.createElement("input");
+        	 			button_edit.setAttribute("type", "button");
+        	 		    button_edit.setAttribute("value", "Edit");
+						var att = document.createAttribute("onclick");      
+    	 		        att.value = "editSite(this)"; 
+    	 				button_edit.setAttributeNode(att);
+        	 		    
+    	 		        mytd_0.append(button_rem); 
+    	 	            mytd_1.innerHTML = $(this).val();
+    	 	            mytd_2.append(button_date1); 
+    	 	            mytd_3.append(button_date2); 
+    	 	            mytd_4.append(button_confirm,button_edit); 
+               
+   	 	             	mycurrent_row.appendChild(mytd_0);
+   	 	              	mycurrent_row.appendChild(mytd_1);
+   	 	              	mycurrent_row.appendChild(mytd_2);
+   	 	              	mycurrent_row.appendChild(mytd_3);
+   	 	              	mycurrent_row.appendChild(mytd_4);
  
         	            mytablebody.appendChild(mycurrent_row);
         	        });
