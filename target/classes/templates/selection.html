@@ -1,45 +1,47 @@
 <!DOCTYPE HTML>
 <html xmlns:th="https://www.thymeleaf.org">
 <head>
-    <title>Global Selection - Give Details</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    
-    <!-- Changes for Calendar Input Date - START -->
-    
-	  <link href="https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel="stylesheet">  
-      <script src="https://code.jquery.com/jquery-1.10.2.js"></script>  
-      <!-- <script src="https://code.jquery.com/jquery-1.3.2.min.js"></script>   -->
-      <script src="https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script> 
-      
-	 <style type="text/css">
-		div {
-			padding: 8px;
-		}
-		
-		.button {
-			border: none;
-			color: white;
-			padding: 10px;
-			text-align: center;
-			text-decoration: none;
-			display: inline-block;
-			font-size: 16px;
-			margin: 4px 2px;
-			cursor: pointer;
-		}
-		
-		.button1 {
-			background-color: green;
-			border-radius: 8px;
-		}
-		
-		.button2 {
-			background-color: red;
-			border-radius: 8px;
-		}
-	</style>
-	  <!-- Javascript -->  
-      <script th:inline="javascript">  
+<title>Global Selection - Give Details</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<!-- Changes for Calendar Input Date - START -->
+
+<link
+	href="https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css"
+	rel="stylesheet">
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<!-- <script src="https://code.jquery.com/jquery-1.3.2.min.js"></script>   -->
+<script src="https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+
+<style type="text/css">
+div {
+	padding: 8px;
+}
+
+.button {
+	border: none;
+	color: white;
+	padding: 10px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	margin: 4px 2px;
+	cursor: pointer;
+}
+
+.button1 {
+	background-color: green;
+	border-radius: 8px;
+}
+
+.button2 {
+	background-color: red;
+	border-radius: 8px;
+}
+</style>
+<!-- Javascript -->
+<script th:inline="javascript">  
       /*<![CDATA[*/
     	  
     	 function goBack() 
@@ -87,6 +89,41 @@
         	        });
 
         	        document.getElementById("sitelistID").value = sites.join(", ");
+        	        
+        	        
+        	        mydiv = document.getElementById("selectedSiteDiv");
+        	        mytable = document.createElement("table");
+        	       
+        	        mytablebody = document.createElement("tbody");
+
+        	        for(var row = 0; row < 5; row++) {
+        	            mycurrent_row=document.createElement("tr");
+        	        
+						var a = mycurrent_row.insertCell(0);
+        	            var x = mycurrent_row.insertCell(1);
+        	   			var y = mycurrent_row.insertCell(2);
+        	   			var z = mycurrent_row.insertCell(3);
+        	                
+        	            var button_rem = document.createElement("input");
+        	 			button_rem.setAttribute("type", "checkbox");
+        	     		button_rem.setAttribute("name", "record");
+        	     
+        	     		var button_date1 = document.createElement("input");
+        	 			button_date1.setAttribute("type", "date");
+        	     
+        	  			var button_date2 = document.createElement("input");
+        	 			button_date2.setAttribute("type", "date");
+						
+        	 			a.append(button_rem);
+		        	  	x.innerHTML = "PPME";
+		        	   	y.append(button_date1);
+		        	   	z.append(button_date2);
+ 
+        	            mytablebody.appendChild(mycurrent_row);
+        	        }
+        	        
+        	     	mytable.appendChild(mytablebody);
+        	        mydiv.appendChild(mytable);
 
             	});
         	    
@@ -123,61 +160,60 @@
         	  });
 	
       /*]]>*/   
-      </script> 
-	
-	<!-- Changes for Calendar Input Date - END -->
-    
+      </script>
+
+<!-- Changes for Calendar Input Date - END -->
+
 </head>
- <body>
+<body>
 	<div class="" align="center">
 		<div class="" align="center" style="background-color: #ffffcc">
 			<h4 style="color: blue;">Global Configuration</h4>
 		</div>
 
-			<div class="" align="center">
-			    <form action="#" th:action="@{/selection}" th:object="${production}" method="post">
-				
-				    <p><input type="Submit" value="Save" /> 
-			              <input type="reset" value="Cancel" onclick="goBack();"/>
-			        <input type="hidden" id="sitelistID" th:field="*{sitelist}"/>
-			        </p>
-				  
-				    <p>
-				    From (yyyy-MM-dd): <input type="text" id="fromdateID" th:field="*{fromdate}" size="10"/>
-				 
-				 	&nbsp;&nbsp;
-				     
-				    To (yyyy-MM-dd): <input type="text" id="todateID" th:field="*{todate}" size="10"/>
-			        </p>
-			
-			
-			    </form>
-		    </div>
-		
-		<div>
-		<table>
-			<tr>
-				<td>
-				Available Sites <br>
-				  <select class="availSiteList" name="availSiteList" id="availSiteList" multiple size="10" style="width: 150px;">
-	
-				  </select>
-				</td>
-				<td>
-				   <input type='button' class='button button1' value='Add' id='addItems'>
-				<br>
-				<input type='button' class='button button2' value='Remove' id='removeItems'>
-				</td>
-				<td>
-				Selected Sites <br>
-				  <select class="selectSiteList" name="selectSiteList" id="selectSiteList" multiple size="10" style="width: 150px;">
-				 
-				  </select>
-				</td>
-			</tr>
-		</table>
+		<div class="" align="center">
+			<form action="#" th:action="@{/selection}" th:object="${production}"
+				method="post">
+
+				<p>
+					<input type="Submit" value="Save" /> <input type="reset"
+						value="Cancel" onclick="goBack();" /> <input type="hidden"
+						id="sitelistID" th:field="*{sitelist}" />
+				</p>
+
+				<p>
+					From (yyyy-MM-dd): <input type="text" id="fromdateID"
+						th:field="*{fromdate}" size="10" /> &nbsp;&nbsp; To (yyyy-MM-dd):
+					<input type="text" id="todateID" th:field="*{todate}" size="10" />
+				</p>
+
+
+			</form>
 		</div>
-		
+
+		<div>
+			<table>
+				<tr>
+					<td>Available Sites <br> <select class="availSiteList"
+						name="availSiteList" id="availSiteList" multiple size="10"
+						style="width: 150px;">
+
+					</select>
+					</td>
+					<td><input type='button' class='button button1' value='Add'
+						id='addItems'> <br> <input type='button'
+						class='button button2' value='Remove' id='removeItems'></td>
+					<td>Selected Sites <br> <select class="selectSiteList"
+						name="selectSiteList" id="selectSiteList" multiple size="10"
+						style="width: 150px;">
+
+					</select>
+					</td>
+				</tr>
+			</table>
+		</div>
+
+		<div id="selectedSiteDiv"></div>
 	</div>
 
 </body>
