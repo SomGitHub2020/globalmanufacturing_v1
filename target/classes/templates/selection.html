@@ -73,6 +73,15 @@ div {
         	    	availList.options[availList.options.length] = new Option(sitelist[i].site, sitelist[i].site);
         	    }
         	    
+    	        
+    	        mydiv = document.getElementById("selectedSiteDiv");
+    	        mytable = document.createElement("table");
+    	       
+    	        mytablebody = document.createElement("tbody");
+    	        
+    	      	mytable.appendChild(mytablebody);
+    	        mydiv.appendChild(mytable);
+        	    
         	    $("#addItems").click(function () {
 				
         	        var sites = [];
@@ -86,17 +95,39 @@ div {
         	            }
         	                    	            
         	            sites.push($(this).val());
+        	            
+        	            mycurrent_row=document.createElement("tr");
+            	        
+						var a = mycurrent_row.insertCell(0);
+        	            var x = mycurrent_row.insertCell(1);
+        	   			var y = mycurrent_row.insertCell(2);
+        	   			var z = mycurrent_row.insertCell(3);
+        	                
+        	            var button_rem = document.createElement("input");
+        	 			button_rem.setAttribute("type", "checkbox");
+        	     		button_rem.setAttribute("name", "record");
+        	     
+        	     		var button_date1 = document.createElement("input");
+        	 			button_date1.setAttribute("type", "date");
+        	     
+        	  			var button_date2 = document.createElement("input");
+        	 			button_date2.setAttribute("type", "date");
+						
+        	 			a.append(button_rem);
+		        	  	x.innerHTML = $(this).val();
+		        	   	y.append(button_date1);
+		        	   	z.append(button_date2);
+ 
+        	            mytablebody.appendChild(mycurrent_row);
+        	        }
+        	            
         	        });
 
         	        document.getElementById("sitelistID").value = sites.join(", ");
         	        
-        	        
-        	        mydiv = document.getElementById("selectedSiteDiv");
-        	        mytable = document.createElement("table");
-        	       
-        	        mytablebody = document.createElement("tbody");
 
-        	        for(var row = 0; row < 5; row++) {
+
+      /*   	        for(var row = 0; row < 5; row++) {
         	            mycurrent_row=document.createElement("tr");
         	        
 						var a = mycurrent_row.insertCell(0);
@@ -120,10 +151,9 @@ div {
 		        	   	z.append(button_date2);
  
         	            mytablebody.appendChild(mycurrent_row);
-        	        }
+        	        } */
         	        
-        	     	mytable.appendChild(mytablebody);
-        	        mydiv.appendChild(mytable);
+        	   
 
             	});
         	    
